@@ -28,6 +28,7 @@ public class PersonServiceImpl implements PersonService {
         log.info("Request to get person: {}");
         PersonList response = null;
         try {
+            url = "https://swapi.dev/api/people";
             response = restTemplate.getForObject(url, PersonList.class);
             return response.getResults();
         } catch (Exception e) {
@@ -40,8 +41,9 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> searchPersons(String search) {
         log.info("Request to get person: {}", search);
         PersonList response = null;
-        url += "?search=" + search;
+        url = "https://swapi.dev/api/people?search=" + search;
         try {
+            RestTemplate restTemplate = new RestTemplate();
             response = restTemplate.getForObject(url, PersonList.class);
             return response.getResults();
         } catch (Exception e) {
